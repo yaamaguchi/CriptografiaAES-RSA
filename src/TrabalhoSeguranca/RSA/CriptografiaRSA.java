@@ -1,12 +1,11 @@
 package TrabalhoSeguranca.RSA;
-import TrabalhoSeguranca.util.ReadFile;
+import TrabalhoSeguranca.util.TransformClass;
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -36,6 +35,7 @@ public class CriptografiaRSA {
         } catch (NoSuchPaddingException ex) {
             Logger.getLogger(CriptografiaRSA.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
         timeEnd = System.currentTimeMillis();
         System.out.println("Tempo de geração da chave: "+ (timeEnd-timeStart));
     }
@@ -43,7 +43,7 @@ public class CriptografiaRSA {
     public List<byte[]> encrypt(String listaTexto) {
         timeStart = System.currentTimeMillis();
         
-        List<byte[]> texto = transforStringToByte64(listaTexto);
+        List<byte[]> texto = TransformClass.transforStringToByte64(listaTexto, valueKey);
         List<byte[]> cipherText = new ArrayList<>();
         
         try {
@@ -74,39 +74,14 @@ public class CriptografiaRSA {
             cipher.init(Cipher.DECRYPT_MODE, this.key.getPrivate());
             for(byte[] a : texto)
                 textoDecripto.add(cipher.doFinal(a));
+            
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+        
         timeEnd = System.currentTimeMillis();
         System.out.println("Tempo de Decripto: "+ (timeEnd-timeStart));
-        return transformByte64ToString(textoDecripto);
-    }
-    
-    public List<byte[]> transforStringToByte64(String listaTexto){
-        List<byte[]>texto = new ArrayList<>();
-        byte[] abc = new byte[512];
-        try {
-            abc = listaTexto.getBytes("UTF-8");
-        } catch (UnsupportedEncodingException ex) {
-            Logger.getLogger(ReadFile.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        for(int x = 0; x < abc.length;){
-            texto.add(Arrays.copyOfRange(abc, x, x+((valueKey/8)-11)));
-            x+=((valueKey/8)-11);
-        }
-        return texto;
-    }
-    
-    public String transformByte64ToString(List<byte[]> lista){
-        String textoCripto = "";
-        for(byte[]a : lista){
-            try {
-                textoCripto += new String(a ,"UTF-8");
-            } catch (UnsupportedEncodingException ex) {
-                Logger.getLogger(CriptografiaRSA.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        return textoCripto;
+        return TransformClass.transformByte64ToString(textoDecripto);
     }
 }
     
