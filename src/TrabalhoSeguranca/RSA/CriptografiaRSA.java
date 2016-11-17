@@ -43,6 +43,8 @@ public class CriptografiaRSA {
     public List<byte[]> encrypt(String listaTexto) {
         timeStart = System.currentTimeMillis();
         
+        //Transforma o texto recebido em "blocos" 
+        //  (os blocos já são modelados de acordo com a capacidade RSA)
         List<byte[]> texto = TransformClass.transforStringToByte64(listaTexto, valueKey);
         List<byte[]> cipherText = new ArrayList<>();
         

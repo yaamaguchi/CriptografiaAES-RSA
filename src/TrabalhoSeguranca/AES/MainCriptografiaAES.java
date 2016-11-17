@@ -14,20 +14,21 @@ public class MainCriptografiaAES {
         
         // new CriptografiaAES ( 128 ) CRIPTOGRAFIA 128 bits
         // new CriptografiaAES ( 256 ) CRIPTOGRAFIA 256 bits 
-        
         CriptografiaAES cripto = new CriptografiaAES(128);
         String textoPuro = ReadFile.readFile("arquivo.txt");
         byte[] encripto = new byte[256];
         
         try {
+            //Encripta
             encripto = cripto.encrypt(textoPuro);
+            
+            //Decripta
             System.out.println(cripto.decrypt(encripto) + "\n");
         } catch (Exception ex) {
             Logger.getLogger(MainCriptografiaAES.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         long timeEnd = System.currentTimeMillis();
-        
         System.out.println("Tempo total de execução: "+ (timeEnd-timeStart));
     }
 }
