@@ -1,5 +1,6 @@
 package TrabalhoSeguranca.AES;
 
+import TrabalhoSeguranca.util.ReadFile;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 

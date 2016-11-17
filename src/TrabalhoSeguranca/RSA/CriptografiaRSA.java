@@ -1,4 +1,5 @@
 package TrabalhoSeguranca.RSA;
+import TrabalhoSeguranca.util.ReadFile;
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;
 import java.security.KeyPair;
