@@ -10,6 +10,10 @@ public class MainCriptografiaRSA {
     public static void main(String[] args) {
         long timeStart = System.currentTimeMillis();
         long timeEnd = 0 ;
+        
+        // new CriptografiaRSA ( 512 ) CRIPTOGRAFIA 512 bits
+        // new CriptografiaRSA ( 1024 ) CRIPTOGRAFIA 1024 bits 
+        
         CriptografiaRSA cripRSA = new CriptografiaRSA(1024);
         String textoPuro = ReadFile.readFile("arquivo.txt");
         List<byte[]> textoEncrypto ;

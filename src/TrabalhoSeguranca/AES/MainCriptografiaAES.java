@@ -12,6 +12,9 @@ public class MainCriptografiaAES {
     public static void main(String[] args) {
         long timeStart = System.currentTimeMillis();
         
+        // new CriptografiaAES ( 128 ) CRIPTOGRAFIA 128 bits
+        // new CriptografiaAES ( 256 ) CRIPTOGRAFIA 256 bits 
+        
         CriptografiaAES cripto = new CriptografiaAES(128);
         String textoPuro = ReadFile.readFile("arquivo.txt");
         byte[] encripto = new byte[256];
